@@ -1,0 +1,128 @@
+{
+  "run": {
+    "run_id": "20261121_190905",
+    "created": "2026-11-21T19:15:41",
+    "input_dev": "data/processed/dev.csv",
+    "input_dev_md5": "fe01f56270a7d5ecc6cfe26d16a41a66",
+    "input_holdout": "data/processed/holdout.csv",
+    "input_holdout_md5": "6dab90f0b96ab470d788bdcb3e842a89",
+    "dev_rows": 104987,
+    "dev_bad_rate": 0.06686542143312982,
+    "holdout_rows": 45012,
+    "holdout_bad_rate": 0.0667821914156225,
+    "seed": 42,
+    "tuning_trials_per_model": 20,
+    "cv_folds": 5,
+    "bootstrap_resamples": 500,
+    "shap_sample_rows": 5000,
+    "runtime_seconds": 396.1,
+    "python": "3.13.14",
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.1",
+    "statsmodels": "0.15.0",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "shap": "0.54.1"
+  },
+  "holdout": {
+    "scorecard": {
+      "auc": 0.8596076586214009,
+      "gini": 0.7192153172428017,
+      "ks": 0.5649618251474957,
+      "brier": 0.050235616093863907,
+      "log_loss": 0.18269315779263065,
+      "mean_pd": 0.0664092787316047,
+      "score_psi": 0.0004605560333039768,
+      "rank_ordering_ok": true
+    },
+    "xgboost": {
+      "auc": 0.8668250280692087,
+      "gini": 0.7336500561384174,
+      "ks": 0.5856976709818946,
+      "brier": 0.048798803240060806,
+      "log_loss": 0.176661416888237,
+      "mean_pd": 0.06783705204725266,
+      "score_psi": 0.00026925948380355727,
+      "rank_ordering_ok": true
+    },
+    "lightgbm": {
+      "auc": 0.867133426650801,
+      "gini": 0.7342668533016019,
+      "ks": 0.5847796859739551,
+      "brier": 0.04881005947375763,
+      "log_loss": 0.1766397933614378,
+      "mean_pd": 0.06781058326013314,
+      "score_psi": 0.0003165897983531395,
+      "rank_ordering_ok": true
+    }
+  },
+  "vs_champion": [
+    {
+      "challenger": "xgboost",
+      "auc_diff": 0.00721736944780782,
+      "auc_diff_lo": 0.005329289930914341,
+      "auc_diff_hi": 0.009058362238004316,
+      "gini_diff": 0.01443473889561564,
+      "share_boot_positive": 1.0
+    },
+    {
+      "challenger": "lightgbm",
+      "auc_diff": 0.007525768029400082,
+      "auc_diff_lo": 0.005405760304210955,
+      "auc_diff_hi": 0.009518717518147809,
+      "gini_diff": 0.015051536058800163,
+      "share_boot_positive": 1.0
+    }
+  ],
+  "decision_rule": {
+    "min_gini_gain": 0.03,
+    "diff_ci_excludes_zero": true,
+    "brier_not_worse": true,
+    "rank_ordering_holds": true
+  },
+  "recommendation": [
+    {
+      "challenger": "xgboost",
+      "gini_gain": 0.01443473889561564,
+      "check_gini_gain": false,
+      "check_ci_above_zero": true,
+      "check_brier_not_worse": true,
+      "check_rank_ordering": true,
+      "replaces_champion": false
+    },
+    {
+      "challenger": "lightgbm",
+      "gini_gain": 0.015051536058800163,
+      "check_gini_gain": false,
+      "check_ci_above_zero": true,
+      "check_brier_not_worse": true,
+      "check_rank_ordering": true,
+      "replaces_champion": false
+    }
+  ],
+  "decision": "Keep the scorecard as champion. Best challenger (lightgbm) gains +1.5 Gini points but fails: gini_gain. Use it as a benchmark / challenger.",
+  "recommended_model": "scorecard",
+  "challenger_params": {
+    "xgboost": {
+      "max_depth": 5,
+      "learning_rate": 0.013017574550948771,
+      "min_child_weight": 34.51558704132954,
+      "subsample": 0.788438482457253,
+      "colsample_bytree": 0.8260944425924756,
+      "reg_lambda": 5.758181071521684,
+      "gamma": 1.2694366400011816,
+      "n_estimators": 627
+    },
+    "lightgbm": {
+      "num_leaves": 22,
+      "learning_rate": 0.05210629443041619,
+      "min_child_samples": 84,
+      "subsample": 0.7088966247380636,
+      "colsample_bytree": 0.6385563848613997,
+      "reg_lambda": 11.937549587227178,
+      "min_split_gain": 0.22788814491680554,
+      "n_estimators": 149
+    }
+  }
+}

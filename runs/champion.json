@@ -1,0 +1,8 @@
+{
+  "run_id": "20261121_190905",
+  "model": "scorecard",
+  "promoted_at": "2026-11-21T19:28:25",
+  "recommended_by_run": "scorecard",
+  "holdout_auc": 0.8596076586214009,
+  "holdout_gini": 0.7192153172428017
+}
